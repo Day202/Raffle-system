@@ -50,9 +50,10 @@ export default function SpinningWheel({ items, onSpinComplete, isSpinning }: Pro
         // finish
         const winner = items[winnerIndex]
         onSpinComplete?.(winner)
-        // reset to original list but keep winner visible
-        setLocalList(items)
-        setY(0)
+        // Stop the wheel where it is — do NOT reset list here
+        setTimeout(() => {
+        onSpinComplete?.(winner)
+        }, 100)
       }
     }
     raf = requestAnimationFrame(step)
